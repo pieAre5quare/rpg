@@ -45,6 +45,13 @@ public class CharCreationFSM
 	private int numRolls10 = NUMROLLS;
 	private int prevNumRolls10;
 	
+	// minimum character age
+	
+	public static final int minCharAge = 17;
+	
+	// maximum character age
+	
+	public static final int maxCharAge = 88;
 	
 	// set up event handlers for user input sections
 	private EventHandler<KeyEvent> keyEventAge = new EventHandler<KeyEvent>() {
@@ -56,7 +63,7 @@ public class CharCreationFSM
 				boolean b = Pattern.matches("[0-9]{2}", txtField.getText());
 				if (b) {
 					int age = Integer.parseInt(txtField.getText());
-					if (age >= 17 && age <= 88) {
+					if (age >= minCharAge && age <= maxCharAge) {
 						inputLayout.setVisible(false);
 						MainFSM.m.modAge(age);
 						checkState(Game.state=8);
@@ -546,7 +553,7 @@ public class CharCreationFSM
 		// age
 		if(Game.state==7)
 		{
-			inputLabel = new Label("Enter age: ");
+			inputLabel = new Label("Enter age " + minCharAge + " - " + maxCharAge + ":");
 		}
 		// name
 		else
@@ -615,6 +622,8 @@ public class CharCreationFSM
 			}
 			count++;
 		}
+		
+		// need to make sure that first age bonus is the same as the minCharAge, similar situation with maxCharAge
 		while(bonuses.get(count).getType().contains("Age")) {
 			if(count == bonuses.size() - 1) {
 				addToBase(bonuses.get(count));

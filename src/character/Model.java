@@ -32,16 +32,6 @@ public class Model implements IActions
 	//resurrection modifier
 	private double resModifier;
 	
-	//class constructor initiates all int variables to 0
-	public Model() {
-		super();
-		this.strength=0;this.dexterity=0;this.twitch=0;this.constitution=0;this.intelligence=0;this.wisdom=0;this.commonSense=0;this.spirituality=0;
-			this.charisma=0;this.luck=0;this.cStrength=0;this.cDexterity=0;this.cTwitch=0;this.cConstitution=0;this.cIntelligence=0;this.cWisdom=0;
-			this.cCommonSense=0;this.cSpirituality=0;this.cCharisma=0;this.cLuck=0;this.age=0;this.status=0;this.level=0;this.xp=0;this.rank=0;this.gold=0;
-			this.cHitPoints=0;this.mHitPoints=0;this.cMagicPoints=0;this.mMagicPoints=0;this.cSkillPoints=0;this.mSkillPoints=0;this.cPrayerPoints=0;
-			this.mPrayerPoints=0;this.cBardPoints=0;this.mBardPoints=0;this.bArmorClass=0;this.cArmorClass=0;this.bAttPerRound=0;this.cAttPerRound=0;
-			this.resModifier=0;
-	}
 
 	@Override
 	public void useWeapon() {
