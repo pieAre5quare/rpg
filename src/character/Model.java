@@ -20,7 +20,7 @@ public class Model implements IActions
 	private int age, status, level, xp, rank, gold;
 	
 	//points c=current m=max
-	private int cHitPoints, mHitPoints, cMagicPoints, mMagicPoints, 
+	private int cHitPoints, mHitPoints, cMysticPoints, mMysticPoints, 
 	cSkillPoints, mSkillPoints, cPrayerPoints, mPrayerPoints, cBardPoints, mBardPoints;
 	
 	//armor class b=base, c=current
@@ -237,20 +237,20 @@ public class Model implements IActions
 		this.mHitPoints = mHitPoints + mod;
 	}
 	//returns current Magic Points
-	public int getcMagicPoints() {
-		return cMagicPoints;
+	public int getcMysticPoints() {
+		return cMysticPoints;
 	}
 	//modifies current Magic Points 
-	public void modcMagicPoints(int mod) {
-		this.cMagicPoints = cMagicPoints + mod;
+	public void modcMysticPoints(int mod) {
+		this.cMysticPoints = cMysticPoints + mod;
 	}
 	//returns max Magic Points
-	public int getmMagicPoints() {
-		return mMagicPoints;
+	public int getmMysticPoints() {
+		return mMysticPoints;
 	}
 	//modifies max Magic Points
-	public void modmMagicPoints(int mod) {
-		this.mMagicPoints = mMagicPoints + mod;
+	public void modmMysticPoints(int mod) {
+		this.mMysticPoints = mMysticPoints + mod;
 	}
 	//returns current Skill Points
 	public int getcSkillPoints() {

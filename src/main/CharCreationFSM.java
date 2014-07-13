@@ -305,11 +305,18 @@ public class CharCreationFSM
 		default:
 			break;
 		}
+		// number of dice and number of sides need to be looked at
+		if ((prevNumRolls10!=numRolls10) && numRolls10 > 0) {
+			rollIneffable(3, 3, 2);
+			// findBonus();
+		}
 		Game.textDescr.setText("..and ye shall begin with these. . .");
 		String output = String.format("\n\n# of rolls left:%3s\n\n%-15s%-3s%-15s%-3s\n%-15s%-3s\n%-15s%-3s"
 				+ "\n%-15s%-3s%-15s%-3s\n\n%22s\n\n(K)eep\n(R)eroll\n\n(Esc)ape",numRolls10,
-				"Mystic Points",99,"Hit Points",99,"Prayer Points",99,"Skill Points",99,
-				"Bard Points",99,"Gold Pieces",99,"Armor Class "+99);
+				"Mystic Points",MainFSM.m.getcMysticPoints(),"Hit Points",MainFSM.m.getcHitPoints(),
+				"Prayer Points",MainFSM.m.getcPrayerPoints(),"Skill Points",MainFSM.m.getcSkillPoints(),
+				"Bard Points",MainFSM.m.getcBardPoints(),"Gold Pieces",MainFSM.m.getGold(),
+				"Armor Class "+ MainFSM.m.getcArmorClass());
 		Game.textDescr.appendText(output);
 	}
 	
@@ -656,12 +663,30 @@ public class CharCreationFSM
 		MainFSM.m.modcSpirituality(toBeAdded.getSp());
 		MainFSM.m.modcCharisma(toBeAdded.getCh());
 		MainFSM.m.modcLuck(toBeAdded.getLk());
-		MainFSM.m.modcArmorClass(toBeAdded.getAc());
-		MainFSM.m.modcHitPoints(toBeAdded.getHit());
-		MainFSM.m.modcMagicPoints(toBeAdded.getMagicPoints());
-		MainFSM.m.modcPrayerPoints(toBeAdded.getPrayer());
-		MainFSM.m.modcSkillPoints(toBeAdded.getSkill());
-		MainFSM.m.modcBardPoints(toBeAdded.getBard());
+		MainFSM.m.modbArmorClass(toBeAdded.getAc());
+		MainFSM.m.modmHitPoints(toBeAdded.getHit());
+		MainFSM.m.modmMysticPoints(toBeAdded.getMagicPoints());
+		MainFSM.m.modmPrayerPoints(toBeAdded.getPrayer());
+		MainFSM.m.modmSkillPoints(toBeAdded.getSkill());
+		MainFSM.m.modmBardPoints(toBeAdded.getBard());
 		MainFSM.m.modGold(toBeAdded.getGold());
+	}
+
+	private void rollIneffable(int numOfDice,int numOfSides, int modifier) {
+		// roll for max ineffables
+		MainFSM.m.modmMysticPoints(Const.rollDice(numOfDice,numOfSides,modifier));
+		MainFSM.m.modmHitPoints(Const.rollDice(numOfDice, numOfSides,modifier));
+		MainFSM.m.modmPrayerPoints(Const.rollDice(numOfDice, numOfSides,modifier));
+		MainFSM.m.modmSkillPoints(Const.rollDice(numOfDice, numOfSides,modifier));
+		MainFSM.m.modmBardPoints(Const.rollDice(numOfDice, numOfSides,modifier));
+		MainFSM.m.modGold(Const.rollDice(numOfDice, numOfSides,modifier));
+		
+		// set current ineffables to max ineffables
+		MainFSM.m.modcMysticPoints(MainFSM.m.getmMysticPoints());
+		MainFSM.m.modcHitPoints(MainFSM.m.getmHitPoints());
+		MainFSM.m.modcPrayerPoints(MainFSM.m.getmPrayerPoints());
+		MainFSM.m.modcSkillPoints(MainFSM.m.getmSkillPoints());
+		MainFSM.m.modcBardPoints(MainFSM.m.getmBardPoints());
+		MainFSM.m.modcArmorClass(MainFSM.m.getbArmorClass());
 	}
 }
